@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <script>
+            function validateForm() {
+                var x = document.forms["myForm"]["email"].value;
+                var atpos = x.indexOf("@");
+                var dotpos = x.lastIndexOf(".");
+                if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                    alert("Not a valid e-mail address");
+                    return false;
+                    }
+                }
+        </script>
+    </head>
+    <body>
+        <form align="center" action="/account" method='post'>
+            <label for="first-name">First Name</label>
+            <input id="first-name" type="text" name="first_name"/>
+            <br>
+            <br>
+            <label for="last-name">Last Name</label>
+            <input id="last-name" type="text" name="last_name"/>
+            <br>
+            <br>
+            <label for="user-email">e-mail</label>
+            <input id="user-email" type="email" name="email"/>
+            <br>
+            <br>
+            <label for="user-password">Password</label>
+            <input id="user-password" type="password" name="password"/>
+            <br><br>
+            <input type="submit" />
+        </form>
+        
+    </body>
+</html>
