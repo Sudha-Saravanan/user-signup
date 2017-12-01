@@ -1,25 +1,22 @@
 <!doctype html>
 <html>
     <head>
-        <script type="text/javascript">
-            function checkPassword(str)
-            {
-    // at least one number, one lowercase and one uppercase letter
-    // at least six characters
-                var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-                return re.test(str);
-            }
-
+        <script>
+            
             function checkForm(form)
             {
+               
                 re = /^\w+$/;
                 if(!re.test(form.user_name.value))
-                 {
+                {
                     alert("Error: Username must contain only letters, numbers and underscores!");
-                    form.username.focus();
+                    form.user_name.focus();
                     return false;
                 }
 
+               
+
+               
                 if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value)
                 {
                     if(form.pwd1.value.length < 6)
@@ -58,9 +55,14 @@
                 } 
                 else 
                 {
-                    alert("You entered a valid password: " + form.pwd1.value);
-                    return true;
+                    alert("Error: invalid password!");
+                    form.pwd1.focus();
+                    return false;
                 }
+                
+                alert("You entered a valid password: " + form.pwd1.value);
+                return true;
+               
             }
 
             function validateForm() {
@@ -78,7 +80,7 @@
 
     </head>
     <body>
-        <form name="account_form" align="center" action="/account.html" method='post'>
+        <form name="account_form" align="center" action="/account.html" onsubmit="return checkForm(this);" method='post'>
             <div class="container">
                     <label for="first-name">First Name</label>
                     <input id="first-name" type="text" placeholder="Enter First Name" name="first_name" required/>
@@ -93,11 +95,11 @@
                     <br>
                     <br>
                     <label for="user-password">Password</label>
-                    <input id="user-password" type="password" placeholder="Enter password" name="pwd1" onsubmit="return checkForm(form);" required/>
+                    <input id="user-password" type="password" placeholder="Enter password" name="pwd1" required/>
                     <br>
                     <br>
                     <label for="verify-password">Verify-Password</label>
-                    <input id="verify-password" type="password" placeholder="re-enter password" name="pwd2"  onsubmit="return checkPassword(str);" required/>
+                    <input id="verify-password" type="password" placeholder="re-enter password" name="pwd2" required/>
                     <br>
                     <br>
                     <label for="user-email">e-mail</label>
